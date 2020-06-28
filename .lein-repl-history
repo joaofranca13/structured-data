@@ -1,254 +1,500 @@
-(defn do-a-thing [x]
-  (let [xx (* x x)]
-    (Math/pow (+ xx xx))))
-(defn do-a-thing [x]
-(let [xx (* x x)
-exit
-(defn spiff [v]
-  (let [a (get [v] 1)
-        b (get [v] 3)]
-    (+ a b)))
-(spiff [1 2 3])
-(defn spiff [v]
-  (let [a (get v 1)
-        b (get v 3)]
-    (+ a b)))
-(spiff [1 2 3])
-(defn spiff [v]
-  (let [a (get v 0)
-        b (get v 2)]
-    (+ a b)))
-(spiff [1 2 3])
-(spiff [1 2 3 4 5 6])
-(spiff [1 2])
-(spiff [])
-exit
-(def china {:name "China Miéville", :birth-year 1972})
-(def octavia {:name "Octavia E. Butler"
-              :birth-year 1947
-              :death-year 2006})
-(def friedman {:name "Daniel Friedman" :birth-year 1944})
-(def felleisen {:name "Matthias Felleisen"})
-(def cities {:title "The City and the City" :authors [china]})
-(def wild-seed {:title "Wild Seed", :authors [octavia]})
-(def embassytown {:title "Embassytown", :authors [china]})
-(def little-schemer {:title "The Little Schemer"
-                     :authors [friedman, felleisen]})
-(defn author-count [book]
-  (count (get book :authors)))
-(author-count cities) 
-(author-count wild-seed)  
-(author-count little-schemer)
-(defn multiple-authors? [book]
-  (if (> (author-count) 1) true false))
-(multiple-authors? cities)
-(defn multiple-authors? [book]
-  (if (> (author-count book) 1) true false))
-(multiple-authors? cities)
-(multiple-authors? wild-seed)
-(multiple-authors? little-schemer)
-(defn add-author [book new-author]
-  (let [new-book (assoc book new-author)])
-  new-book)
-(defn add-author [book new-author]
-  (let [new-book (assoc book new-author)]
-    new-book))
-(add-author little-schemer {:name "Gerald J. Sussman"})
-(defn add-author [book new-author]
-  (let [new-book (assoc book new-author)]
-    new-book))
- (add-author little-schemer {:name "Gerald J. Sussman"})
-(assoc cities :awards ["Hugo", "World Fantasy Award",
-                       "Arthur C. Clarke Award",
-                       "British Science Fiction Award"])
-(add-author little-schemer {:name "Gerald J. Sussman"})
-(assoc [1 2 3] 4)
-(assoc [1 2 3] 2 4)
-(assoc [1 2 3] 3 4)
-(defn add-author [book new-author]
-  (let [new-book (conj book new-author)]
-    new-book))
-(add-author little-schemer {:name "Gerald J. Sussman"})
-(defn add-author [book new-author]
-  (let [new-book (conj :authors book new-author)]
-    new-book))
-(add-author little-schemer {:name "Gerald J. Sussman"})
-(defn add-author [book new-author]
-  (let [new-book (assoc book :authors[new-author])]
-    new-book))
-(add-author little-schemer {:name "Gerald J. Sussman"})
-(defn add-author [book new-author]
-  (let [new-book (conj book new-author)]
-    new-book))
-(add-author little-schemer {:name "Gerald J. Sussman"})
-(defn add-author [book new-author]
-  (let [new-book (conj book :authors new-author)]
-    new-book))
-(add-author little-schemer {:name "Gerald J. Sussman"})
-(defn add-author [book new-author]
-  (let [new-book (conj (book :authors) new-author)]
-    new-book))
-(add-author little-schemer {:name "Gerald J. Sussman"})
-(defn add-author [book new-author]
-  (let [new-book (conj book new-author)]
-    new-book)
-(add-author little-schemer {:name "Gerald J. Sussman"})
-(defn add-author [book new-author]
-  (let [new-book (conj book new-author)]
-    new-book))
-(add-author little-schemer {:name "Gerald J. Sussman"})
-(defn add-author [book new-author]
-  (let [author (get book :authors) 
-        new-book (conj author new-author)]
-    new-book))
-(add-author little-schemer {:name "Gerald J. Sussman"})
-(defn add-author [book new-author]
-  (let [author (get book :authors) 
-        new-authors(conj author new-author)]
-    (assoc book new-authors)))
-(add-author little-schemer {:name "Gerald J. Sussman"})
-(defn add-author [book new-author]
-  (let [author (get book :authors) 
-        new-authors(conj author new-author)]
-    (assoc book :authors new-authors)))
-(add-author little-schemer {:name "Gerald J. Sussman"})
-(add-author {:authors [{:name "Juhana"}]} {:name "Jani"})
-(def china {:name "China Miéville", :birth-year 1972})
-(def octavia {:name "Octavia E. Butler"
-              :birth-year 1947
-              :death-year 2006})
-(def friedman {:name "Daniel Friedman" :birth-year 1944})
-(def felleisen {:name "Matthias Felleisen"})
-(def cities {:title "The City and the City" :authors [china]})
-(def wild-seed {:title "Wild Seed", :authors [octavia]})
-(def embassytown {:title "Embassytown", :authors [china]})
-(def little-schemer {:title "The Little Schemer"
-                     :authors [friedman, felleisen]})(defn alive? [author]
-  (contains? author :death-year))
-(alive? china)
-(defn alive? [author]
-  (contains? (get author :authors) :death-year))
-(alive? china)
-(defn alive? [author]
-  (not (contains? (get author :authors) :death-year)))
-(alive? china)
-(alive? octavia)
-(defn alive? [author]
-  (contains? author :death-year))
-(alive? china)
-(alive? octavia)
+(books-by-author china books)
+(defn books-by-author [author books]
+  (filter has-author? author books))
+(books-by-author china books)
+(defn books-by-author [author books]
+  (filter (has-author? author) books))
+(books-by-author china books)
+(defn books-by-author [author books]
+  (filter (fn [book] (has-author? book author)) book))
+j(defn books-by-author [author books]
+  (filter (fn [book] (has-author? book author)) books))
+(defn books-by-author [author books]
+  (filter (fn [book] (has-author? book author)) books))
+(books-by-author china books)
+(books-by-author octavia books)
+(def authors #{china, felleisen, octavia, friedman})
+(defn author-by-name [name authors]
+  (:name authors))
+(author-by-name "Octavia E. Butler" authors) 
+(defn author-by-name [name authors]
+  (filter (contains? name authors) authors))
+(author-by-name "Octavia E. Butler" authors) 
+(defn author-by-name [name authors]
+  (filter (contains? authors name) authors))
+(author-by-name "Octavia E. Butler" authors) 
+(defn author-by-name [name authors]
+  (filter (fn [author] (= name (:name author)) authors)))
+(author-by-name "Octavia E. Butler" authors) 
+(defn author-by-name [name authors]
+  (first(filter (fn [author] (= name (:name author)) authors))))
+(author-by-name "Octavia E. Butler" authors) 
+(defn author-by-name [name authors]
+  (first (filter (fn [author] (= name (:name author))) authors)))
+(author-by-name "Octavia E. Butler" authors) 
+(defn author-by-name [name authors]
+  (filter (fn [author] (= name (:name author))) authors))
+(author-by-name "Octavia E. Butler" authors) 
+(author-by-name "Octavia E. Butler" #{felleisen, friedman})
+(defn author-by-name [name authors]
+  (first (filter (fn [author] (= name (:name author))) authors)))
+(author-by-name "Octavia E. Butler" #{felleisen, friedman})
+(author-by-name "China Miéville" authors)
+(author-by-name "Goerge R. R. Martin" authors) 
+(defn living-authors [authors]
+  (filter alive? authors))
+(defn living-authors [authors]
+  (filter alive? authors))
 (defn alive? [author]
   (not (contains? author :death-year)))
-(alive? china)
-(alive? octavia)
-exit
-(defn munge [x]
-  (+ x 42))
-(map munge [1 2 3 4])
-(count "batata")
-(defn element-lengths [collection]
-  (map (count collection)))
-(element-lengths ["foo" "bar" "" "quux"]
-)
-(element-lengths ["foo" "bar" "" "quux"])
-(defn element-lengths [collection]
-  (let [munge (fn [x] (count x))]
-    (map munge collection)))
-(element-lengths ["foo" "bar" "" "quux"])
-(element-lengths ["x" [:a :b :c] {:y 42}])
-(defn element-lengths [collection]
-  (let [contar (fn [x] (count x))]
-    (map contar collection)))
-(element-lengths ["foo" "bar" "" "quux"]) 
-(element-lengths ["x" [:a :b :c] {:y 42}])
-(get [1 2 3] 0)
-(get [1 2 3] 1)
-(defn second-elements [collection]
-  (let [segundo-item (fn [x] (get x 1))]
-    (map segundo-item collection)))
-(second-elements [[1 2] [2 3] [3 4]])
-(second-elements [[1 2 3 4] [1] ["a" "s" "d" "f"]])
+(defn living-authors [authors]
+  (filter alive? authors))
+(living-authors authors)  
+(living-authors #{octavia})
+(living-authors #{china, felleisen})
+(def jrrtolkien {:name "J. R. R. Tolkien" :birth-year 1892 :death-year 1973})
+(def christopher {:name "Christopher Tolkien" :birth-year 1924})
+(def kay {:name "Guy Gavriel Kay" :birth-year 1954})
+(def silmarillion {:title "Silmarillion"
+                   :authors #{jrrtolkien, christopher, kay}})(def dick {:name "Philip K. Dick", :birth-year 1928, :death-year 1982})
+(def zelazny {:name "Roger Zelazny", :birth-year 1937, :death-year 1995})
+(def deus-irae {:title "Deus Irae", :authors #{dick, zelazny}})
+(def jrrtolkien {:name "J. R. R. Tolkien" :birth-year 1892 :death-year 1973})
+(def christopher {:name "Christopher Tolkien" :birth-year 1924})
+(def kay {:name "Guy Gavriel Kay" :birth-year 1954})
+(def silmarillion {:title "Silmarillion"
+                   :authors #{jrrtolkien, christopher, kay}})
+(def dick {:name "Philip K. Dick", :birth-year 1928, :death-year 1982})
+(def zelazny {:name "Roger Zelazny", :birth-year 1937, :death-year 1995})
+(def deus-irae {:title "Deus Irae", :authors #{dick, zelazny}})
+(defn has-a-living-author? [book]
+  (:authors book))
+(has-a-living-author? wild-seed)    
+(defn has-a-living-author? [book]
+  (filter alive? (:authors book)))
+(has-a-living-author? wild-seed)    
+(has-a-living-author? wild-seed)
+(defn has-a-living-author? [book]
+  (empty? (filter alive? (:authors book))))
+(defn has-a-living-author? [book]
+  (empty? (filter alive? (:authors book))))
+(has-a-living-author? wild-seed) 
+(defn has-a-living-author? [book]
+  (not (empty? (filter alive? (:authors book)))))
+(has-a-living-author? wild-seed) 
+(has-a-living-author? silmarillion) 
+(has-a-living-author? little-schemer)
+(has-a-living-author? cities)
+(has-a-living-author? deus-irae) 
+(defn books-by-living-authors [books]
+  (filter (fn [book] (alive? author)) books))
+(defn books-by-living-authors [books]
+  (filter has-a-living-author? books))
+(books-by-living-authors books)
+(books-by-living-authors (concat books [deus-irae, silmarillion]))
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books) ("."))
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books)("."))
+    :else "No books."))
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books) ("."))
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books)("."))
+    :else "No books."))
 (def china {:name "China Miéville", :birth-year 1972})
 (def octavia {:name "Octavia E. Butler"
               :birth-year 1947
               :death-year 2006})
 (def friedman {:name "Daniel Friedman" :birth-year 1944})
 (def felleisen {:name "Matthias Felleisen"})
-(def cities {:title "The City and the City" :authors [china]})
-(def wild-seed {:title "Wild Seed", :authors [octavia]})
-(def embassytown {:title "Embassytown", :authors [china]})
+(def cities {:title "The City and the City" :authors #{china}})
+(def wild-seed {:title "Wild Seed", :authors #{octavia}})
+(def embassytown {:title "Embassytown", :authors #{china}})
 (def little-schemer {:title "The Little Schemer"
-                     :authors [friedman, felleisen]})
+                     :authors #{friedman, felleisen}})
 (def books [cities, wild-seed, embassytown, little-schemer])
-(defn titles [books]
-  (map :title books))
-(titles [cities])
-(titles books)
-(concat (map author-names [cities, wild-seed]))
-(apply + [1 2 3])
-(concat ["China Miéville"] ["Octavia E. Butler"])
-(apply concat [["China Miéville"] ["Octavia E. Butler"]])
-(repeat 5 "*")
-(defn stars [n]
-  (apply concat (repeat n "*")))
-(stars 1)
-(stars 7)
-(defn stars [n]
-  (concat (repeat n "*")))
-(stars 7)
-(defn stars [n]
-  (apply concat [(repeat n "*")]))
-(stars 1)
-(stars 7)
-(defn stars [n]
-  (apply concat (repeat n "*")))
-(stars 1)
-(defn stars [n]
-  (apply concat [(repeat n *)]))
-(stars 1)
-k(defn stars [n]
-  (apply str [(repeat n "*")]))
-(defn stars [n]
-  (apply str [(repeat n "*")]))
-(stars 1)
-(stars 2)
-j(defn stars [n]
-  (apply str (repeat n "*")))
-(defn stars [n]
-  (apply str (repeat n "*")))
-(stars 1)
-(stars 2)
-(stars 5)
-(defn monotonic? [a-seq]
-  (apply >= [a-seq]))
-(monotonic? [1 2 3])
-(monotonic? [1 2 3])(monotonic? [1 2 3])
-(monotonic? [1 2 1 0])
-(defn monotonic? [a-seq]
+(books->string [])
+(books->string [cities])
+(defn books->string [books]
   (cond
-    (apply >= a-seq)
-    (apply <= a-seq)
-    :else false))
-(monotonic? [1 2 3])
-(defn monotonic? [a-seq]
-  (if (apply <= a-seq))
-)
-(defn monotonic? [a-seq]
-  (if (or (apply <= a-seq) (apply >= a-seq) true)))
-(defn monotonic? [a-seq]
-  (if (or (apply <= a-seq) (apply >= a-seq))))
-(defn monotonic? [a-seq]
-  (if (or (apply <= a-seq) (apply >= a-seq)) true false))
-(monotonic? [1 2 3])
-(monotonic? [0 1 10 11])
-(monotonic? [3 2 0 -3])
-(monotonic? [3 2 2])
-(monotonic? [1 2 1 0])
-(set [1 2 3 1 1 1 3 3 2 1])
-(defn toggle [a-set elem]
-  (if (contains? a-set elem) (disj a-set elem) (conj a-set elem))
-)
-(toggle #{:a :b :c} :d)
-(toggle #{:a :b :c} :a) 
-(toggle #{:a :b :c} :d)
-exit
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books)".")
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books)".")
+    :else "No books."))
+(books->string [cities])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books))
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books."))
+(books->string [cities])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books) ".")
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books) ".")
+    :else "No books."))
+(books->string [cities])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books) "abs")
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books) "asv")
+    :else "No books.")
+jj(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books) "abs")
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books) "asv")
+    :else "No books."))
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books) "abs")
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books) "asv")
+    :else "No books."))
+(books->string [cities])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "((map book->string books) ".")
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books."))
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "((map book->string books) ".")
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books.")))
+(books->string [cities])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books)
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books)
+    :else "No books.")))
+kk(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books)
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books)
+    :else "No books."))))
+(books->string [cities])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books))
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books."))
+(books->string [cities])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books))"."
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books."))
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books))"."
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books."))
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books))
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books."))
+(books->string [cities])
+(defn book->string [book]
+  (let [titulo
+        (:title book)
+        autor
+        (authors->string (:authors book))]
+    (apply str (interpose ", written by " [titulo autor]) ".")))
+(book->string wild-seed)
+(defn book->string [book]
+  (let [titulo
+        (:title book)
+        autor
+        (authors->string (:authors book))]
+    (apply str (interpose ", written by " [titulo autor]))))
+(book->string wild-seed)
+(defn book->string [book]
+  (let [titulo
+        (:title book)
+        autor
+        (authors->string (:authors book))]
+    (apply str (interpose ", written by " [titulo autor]) ", written by " )))
+(defn book->string [book]
+  (let [titulo
+        (:title book)
+        autor
+        (authors->string (:authors book))]
+    (apply str (interpose ", written by " [titulo autor]) ", written by " )))
+(defn book->string [book]
+  (let [titulo
+        (:title book)
+        autor
+        (authors->string (:authors book))]
+    (apply str (interpose ", written by " [titulo autor]) ", written by " )))
+(book->string wild-seed)
+(defn book->string [book]
+  (let [titulo
+        (:title book)
+        autor
+        (authors->string (:authors book))]
+    (apply str (interpose ", written by " [titulo autor]))))
+(book->string wild-seed)
+(defn book->string [book]
+  (let [titulo
+        (:title book)
+        autor
+        (authors->string (:authors book))]
+    (apply str (interpose ", written by " [titulo autor "."]))))
+(book->string wild-seed)
+(defn book->string [book]
+  (let [titulo
+        (:title book)
+        autor
+        (authors->string (:authors book))]
+    (apply str (interpose ", written by " [titulo autor]))))
+(book->string wild-seed)
+(defn books->string [books]
+  (let [book-str (fn [book]
+                   (str (books->string book) "."))
+        book-strs (map book-str books)]
+    (cond
+      (= (count books) 1) (apply str (count books)" book. "(first book-strs))
+      (> (count books) 1) (apply str (count books)" books. "(first book-strs))
+      :else "No books.")))
+(book->string wild-seed)
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (apply str (count books)" book. "(map book->string books)) ".")
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books."))
+(book->string wild-seed)
+(defn book->string [book]
+  (let [titulo
+        (:title book)
+        autor
+        (authors->string (:authors book))]
+    (apply str (interpose ", written by " [titulo autor]) ".")))
+(book->string wild-seed)
+(defn book->string [book]
+  (let [titulo
+        (:title book)
+        autor
+        (authors->string (:authors book))]
+    (apply str (interpose ", written by " [titulo autor]) (str (".")))))
+(book->string wild-seed)
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (str (count books)" book. "(map book->string books))
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books."))
+(books->string [])
+(books->string [cities])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (str (count books)" book. "(apply book->string books))
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books."))
+(books->string [cities])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (str (count books)" book. "(apply book->string books) ".")
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books."))
+(books->string [cities])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (str (count books)" book. "(map book->string books) ".")
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books."))
+(books->string [cities])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books) ".")
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books."))
+(books->string [cities])
+(books->string [little-schemer, cities, wild-seed])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books)) 
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books."))
+(books->string [little-schemer, cities, wild-seed])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books))
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books."))
+(books->string [little-schemer, cities, wild-seed])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books))
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books"))
+(books->string [little-schemer, cities, wild-seed])
+(defn book->string [book]
+  (let [titulo
+        (:title book)
+        autor
+        (authors->string (:authors book))]
+    (apply str (interpose ", written by " [titulo autor]))))
+(books->string [little-schemer, cities, wild-seed])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (str (count books)" book. "(map book->string books) ".")
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books"))
+(books->string [little-schemer, cities, wild-seed])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (str (count books)" book. "(map book->string books))
+    (> (count books) 1) (str (count books)" books. "(map book->string books))
+    :else "No books"))
+(books->string [little-schemer, cities, wild-seed])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books))
+    (> (count books) 1) (apply str (count books)" books. "(map book->string books))
+    :else "No books."))
+(books->string [])
+(books->string [little-schemer, cities, wild-seed])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books))
+    (> (count books) 1) (apply str (count books)" books. "(interpose " | "(map book->string books)))
+    :else "No books."))
+(books->string [little-schemer, cities, wild-seed])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books))
+    (> (count books) 1) (apply str (count books)" books. "(interpose " | "(map book->string books)) str("."))
+    :else "No books."))
+(books->string [little-schemer, cities, wild-seed])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books))
+    (> (count books) 1) (apply str (count books)" books. "(interpose " | "(map book->string books)) (str(".")))
+    :else "No books."))
+(books->string [little-schemer, cities, wild-seed])
+(books->string [cities])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books))
+    (> (count books) 1) (apply str (count books)" books. "(interpose " | "(map book->string books))
+    :else "No books."))
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books))
+    (> (count books) 1) (apply str (count books)" books. "(interpose " | "(map book->string books))
+    :else "No books.")))
+(books->string [cities])
+(books->string [little-schemer, cities, wild-seed])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books))
+    (> (count books) 1) (apply str (count books)" books. "(interpose " | "(map book->string books)))
+    :else "No books."))
+(books->string [little-schemer, cities, wild-seed])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (concat(apply str (count books)" book. "(map book->string books)) ".")
+    (> (count books) 1) (apply str (count books)" books. "(interpose " | "(map book->string books)))
+    :else "No books."))
+(books->string [cities])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply concat(str (count books)" book. "(map book->string books)) ".")
+    (> (count books) 1) (apply str (count books)" books. "(interpose " | "(map book->string books)))
+    :else "No books."))
+(books->string [cities])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (str (str (count books)" book. "(map book->string books)) ".")
+    (> (count books) 1) (apply str (count books)" books. "(interpose " | "(map book->string books)))
+    :else "No books."))
+(books->string [cities])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books) ".")
+    (> (count books) 1) (apply str (count books)" books. "(interpose " | "(map book->string books)))
+    :else "No books.")
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(map book->string books) ".")
+    (> (count books) 1) (apply str (count books)" books. "(interpose " | "(map book->string books)))
+    :else "No books."))
+(books->string [cities])
+(books->string [little-schemer, cities, wild-seed])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(str(map book->string books)) ".")
+    (> (count books) 1) (apply str (count books)" books. "(interpose " | "(map book->string books)))
+    :else "No books."))
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(str(map book->string books)) ".")
+    (> (count books) 1) (apply str (count books)" books. "(interpose " | "(map book->string books)))
+    :else "No books."))
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(str(map book->string books)) ".")
+    (> (count books) 1) (apply str (count books)" books. "(interpose " | "(map book->string books)))
+    :else "No books."))
+(books->string [cities])
+(books->string [little-schemer, cities, wild-seed])
+k(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(apply str(map book->string books)) ".")
+    (> (count books) 1) (apply str (count books)" books. "(interpose " | "(map book->string books)))
+    :else "No books."))
+(books->string [little-schemer, cities, wild-seed])
+(books->string [cities])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(apply str(map book->string books)) ".")
+    (> (count books) 1) (apply str (count books)" books. "(interpose " | "(apply str(map book->string books))".")
+    :else "No books."))
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(apply str(map book->string books)) ".")
+    (> (count books) 1) (apply str (count books)" books. "(interpose " | "(apply str(map book->string books)))".")
+    :else "No books."))
+(books->string [cities])
+(books->string [little-schemer, cities, wild-seed])
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(apply str(map book->string books)) ".")
+    (> (count books) 1) (apply str (count books)" books. "(apply str(interpose " | "(map book->string books)))".")
+    :else "No books."))
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(apply str(map book->string books)) ".")
+    (> (count books) 1) (apply str (count books)" books. "(apply str(interpose " | "(map book->string books)))".")
+    :else "No books."))
+(books->string [little-schemer, cities, wild-seed])
+(defn living-authors [authors]
+  (filter alive? authors))
+(living-authors authors)   
+(def jrrtolkien {:name "J. R. R. Tolkien" :birth-year 1892 :death-year 1973})
+(def christopher {:name "Christopher Tolkien" :birth-year 1924})
+(def kay {:name "Guy Gavriel Kay" :birth-year 1954})
+(def silmarillion {:title "Silmarillion"
+                   :authors #{jrrtolkien, christopher, kay}})
+(def dick {:name "Philip K. Dick", :birth-year 1928, :death-year 1982})
+(def zelazny {:name "Roger Zelazny", :birth-year 1937, :death-year 1995})
+(def deus-irae {:title "Deus Irae", :authors #{dick, zelazny}})
+(defn has-a-living-author? [book]
+  (not (empty? (filter alive? (:authors book)))))
+(has-a-living-author? wild-seed)  
+(has-a-living-author? silmarillion)
+(defn books-by-living-authors [books]
+  (filter (fn [book] (alive? author)) books))
+(defn books-by-living-authors [books]
+  (first (filter (fn [book] (has-a-living-author? book)) books)))
+(books-by-living-authors books)
+(defn books-by-living-authors [books]
+  (filter (fn [book] (has-a-living-author? book)) books))
+(books-by-living-authors books)
+(defn books->string [books]
+  (cond
+    (= (count books) 1) (apply str (count books)" book. "(apply str (map book->string books)) ".")
+    (> (count books) 1) (apply str (count books)" books. "(apply str (interpose " | "(map book->string books)))".")
+    :else "No books."))
+(books->string [])
+(books->string [cities])
+(books->string [little-schemer, cities, wild-seed])
